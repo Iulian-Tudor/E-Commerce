@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  commerce-functions:
+    image: commercefunctions
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - AZURE_FUNCTIONS_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=DockerDev
+      - FUNCTIONS_WORKER_RUNTIME=dotnet-isolated
+      - WEBSITES_ENABLE_APP_SERVICE_STORAGE=false
+      - CORS_ALLOWED_ORIGINS=["http://localhost:5167"]
+    depends_on:
+      - postgres
+      - azurite
+    ports:
+      - "7373:80"
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: commerce
+      POSTGRES_PASSWORD: Pass4Commerce1!
+    ports:
+      - "5432:5432"
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    hostname: azurite
+    command: azurite --blobHost 0.0.0.0 --blobPort 10000 --loose
+    volumes:
+      - ./azurite:/workspace
+    logging:
+      driver: none
+    ports:
+      - "10000:10000"
+    environment:
+      - AZURITE_BLOB_CORS=*

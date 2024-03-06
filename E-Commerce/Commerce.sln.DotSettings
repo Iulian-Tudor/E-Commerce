@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EBusiness_003B_002A_003BCommerce_002EBusiness_002EBusinessConstants_003B_002A/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EBusiness_003B_002A_003BCommerce_002EBusiness_002ERefreshTokenCommandResponse_003B_002Ector/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EBusiness_003B_002A_003BCommerce_002EBusiness_002ERefreshTokenCommand_003B_002Ector/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EDomain_003B_002A_003BCommerce_002EDomain_002EDefaultTimeProvider_003B_002A/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EDomain_003B_002A_003BCommerce_002EDomain_002EDefaultTimeProvider_003B_002A_005FUtcNow/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EDomain_003B_002A_003BCommerce_002EDomain_002EFixedPrecisionPrice_003BGetEqualityComponents/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EDomain_003B_002A_003BCommerce_002EDomain_002EStringExtensions_003B_002A/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EDomain_003B_002A_003BCommerce_002EDomain_002ETimeProviderContext_003BDispose/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EDomain_003B_002A_003BCommerce_002EDomain_002ETimeProviderContext_003B_002A/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Commerce_002EDomain_003B_002A_003BCommerce_002EDomain_002ETimeProvider_003B_002A/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
