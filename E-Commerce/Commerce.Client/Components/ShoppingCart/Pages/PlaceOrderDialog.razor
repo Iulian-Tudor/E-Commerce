@@ -1,0 +1,29 @@
+﻿@inject IAuthService AuthService
+@inject IOrderService OrderService
+@inject NavigationManager NavigationManager
+@inject IShoppingCartService ShoppingCartService
+
+<MudDialog>
+    <DialogContent>
+        <MudContainer Style="height: 10rem">
+            <EditForm Model="Model" OnValidSubmit="Submit">
+                <DataAnnotationsValidator/>
+
+                <MudGrid Class="d-flex justify-center">
+                    <MudItem xs="12" sm="7">
+                        <MudCard>
+                            <MudCardContent>
+                                <MudTextField Label="Shipping address" @bind-Value="Model.ShippingAddress" For="@(() => Model.ShippingAddress)"/>
+                            </MudCardContent>
+
+                            <MudCardActions>
+                                <MudButton ButtonType="ButtonType.Button" Variant="Variant.Text" Color="Color.Primary" Class="mr-auto" @onclick="() => Cancel()">Cancel</MudButton>
+                                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Place order</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+                    </MudItem>
+                </MudGrid>
+            </EditForm>
+        </MudContainer>
+    </DialogContent>
+</MudDialog>

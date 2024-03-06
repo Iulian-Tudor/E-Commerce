@@ -1,0 +1,29 @@
+﻿@page "/orders/mine"
+
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+@inject IOrderedProductService OrderedProductService
+
+<MudText Typo="Typo.h3" Style="margin-top: 3rem; margin-bottom: 3rem;" Align="Align.Center">My Orders</MudText>
+
+<div style="overflow-x: auto;">
+	<MudTable Breakpoint="Breakpoint.Sm" FixedHeader="true" CustomFooter="true" FixedFooter="true" Items="@OrderedProducts">
+		<HeaderContent>
+			<MudHidden Up="Breakpoint.Sm">
+				<MudTh>Name</MudTh>
+				<MudTh>Address</MudTh>
+				<MudTh>Quantity</MudTh>
+				<MudTh>Price per unit</MudTh>
+				<MudTh>Status</MudTh>
+			</MudHidden>
+		</HeaderContent>
+
+		<RowTemplate>
+			<MudTd DataLabel="Name">@context.Name</MudTd>
+			<MudTd DataLabel="Address">@(context.ShippingAddress == "" ? "-" : context.ShippingAddress)</MudTd>
+			<MudTd Style="text-align:center" DataLabel="Quantity">@context.Count</MudTd>
+			<MudTd Style="text-align:center" DataLabel="Price per unit">@context.Price</MudTd>
+			<MudTd Style="text-align:center" DataLabel="Status">@context.Status.ToString()</MudTd>
+		</RowTemplate>
+	</MudTable>
+</div>

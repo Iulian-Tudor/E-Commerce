@@ -1,0 +1,30 @@
+﻿@page "/categories/add"
+
+@inject ICategoryService CategoryService
+@inject NavigationManager NavigationManager
+
+<RefreshToken/>
+<RestrictAccess/>
+
+<MudText Typo="Typo.h3" Align="Align.Center" Style="margin-top: 3rem; margin-bottom: 3rem">Add a category</MudText>
+
+<MudContainer>
+    <EditForm Model="Model" OnValidSubmit="Submit">
+        <DataAnnotationsValidator />
+        <MudGrid Class="d-flex justify-center">
+            <MudItem xs="12" sm="7">
+                <MudCard>
+                    <MudCardContent>
+                        <MudTextField Label="Name" HelperText="Max. 25 characters" @bind-Value="Model.Name" For="@(() => Model.Name)" />
+                        <MudTextField Label="Description" AutoGrow HelperText="Max. 100 characters" @bind-Value="Model.Description" For="@(() => Model.Description)" />
+                    </MudCardContent>
+					
+                    <MudCardActions>
+                        <MudButton ButtonType="ButtonType.Button" Variant="Variant.Text" Color="Color.Primary" Class="mr-auto" @onclick="Cancel">Cancel</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Submit</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+</MudContainer>

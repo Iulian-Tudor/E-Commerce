@@ -1,0 +1,14 @@
+﻿@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var identifiedUserResult = await AuthService.GetIdentifiedUser();
+
+        if (identifiedUserResult.IsFailure)
+        {
+            NavigationManager.NavigateTo("/categories", true);
+        }
+    }
+}

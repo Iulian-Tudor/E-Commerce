@@ -1,0 +1,104 @@
+﻿@page "/products"
+
+@inject IAuthService AuthService
+@inject IProductService ProductService
+@inject NavigationManager NavigationManager
+@inject IShoppingCartService ShoppingCartService
+
+<RefreshToken/>
+
+<MudText Typo="Typo.h3" Style="margin-top: 3rem; margin-bottom: 3rem" Align="Align.Center">Products</MudText>
+
+<div class="d-flex flex-wrap justify-center">
+	@if (!products.Any())
+	{
+		<MudText Typo="Typo.h5"Align="Align.Center">No products found</MudText>
+	}
+	else
+	{
+		@foreach (var product in products)
+		{
+			<MudItem Class="mt-3 mb-3 ml-3 mr-3">
+				<MudCard Style="max-width: 25rem; min-width: 25rem">
+
+					<MudCardHeader>
+						<CardHeaderAvatar>
+							<MudAvatar Color="Color.Secondary">@product.VendorName[0]</MudAvatar>
+						</CardHeaderAvatar>
+
+						<CardHeaderContent>
+							<MudTooltip Text="See product">
+								<MudButton Variant="Variant.Text" OnClick="@(() => NavigateToProduct(product))">
+									<MudText Typo="Typo.h6">@product.Name</MudText>
+								</MudButton>
+							</MudTooltip>
+						</CardHeaderContent>
+
+						<CardHeaderActions>
+							<MudTooltip Class="ml-auto mr-auto" Text="See similar products">
+								<MudIconButton Icon="@CustomIcons.Material.Category" OnClick="@(() => NavigateToCategory(product))"/>
+							</MudTooltip>						
+						</CardHeaderActions>
+					</MudCardHeader>
+
+					@if (product?.Image is { Length: > 0 })
+					{
+						<MudCardMedia Height="400" Image="@product?.ImageUrl"/>
+					}
+					else
+					{
+						<MudCardMedia Height="400" Image="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081"/>
+					}
+
+					<MudCardContent>
+						<MudText Class="overflow-hidden" Typo="Typo.body1">@product.Description</MudText>
+						<MudText Class="mt-2" Style="font-size: 18px">@product.Price RON</MudText>
+					</MudCardContent>
+
+					<MudCardActions>
+						@if (identifiedUserResult.IsFailure)
+						{
+							<MudTooltip Class="mr-auto" Text="Sign in to add to favourites">
+								<MudIconButton Icon="@Icons.Material.Filled.Star" Color="Color.Default"/>
+							</MudTooltip>
+
+							<MudTooltip Class="ml-auto" Text="Sign in to add to cart">
+								<MudIconButton Icon="@Icons.Material.Filled.ShoppingCart" Color="Color.Default"/>
+							</MudTooltip>
+						}
+						else
+						{
+							@if (!favoriteProducts.Any(p => p.ProductId == product.Id))
+                            {
+                                <MudIconButton
+                                    Class="mr-auto"
+                                    Icon="@Icons.Material.Filled.Star"
+                                    Variant="Variant.Filled"
+                                    OnClick="() => ProductService.AddToFavorites(product.Id)"/>
+                            }
+                            else
+                            {
+                                <MudTooltip Class="mr-auto" Text="Remove from favourites">
+                                    <MudIconButton
+                                        Class="mr-auto"
+                                        Icon="@Icons.Material.Filled.Star"
+                                        Variant="Variant.Filled"
+                                        Color="Color.Error"
+                                        OnClick="() => RemoveFromFavorites(product)"/>
+                                </MudTooltip>
+                            }
+
+                            <MudIconButton 
+                                Class="ml-auto" 
+                                Icon="@Icons.Material.Filled.ShoppingCart" 
+                                Variant="Variant.Filled" 
+                                Color="Color.Primary" 
+                                OnClick="() => ShoppingCartService.Add(product.Id)" />
+						}
+					</MudCardActions>
+
+				</MudCard>
+			</MudItem>
+		}
+	}
+</div>

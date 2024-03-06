@@ -1,0 +1,11 @@
+﻿::deep .left-top-avatar {
+    float: left !important;
+    margin-top: 1rem !important;
+    margin-left: 1rem !important;
+}
+
+::deep .right-top-edit-button {
+    float: right !important;
+    margin-top: 1rem !important;
+    margin-right: 1rem !important;
+}
