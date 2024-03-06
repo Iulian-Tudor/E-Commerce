@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.40.3" />
+    <PackageReference Include="EmailValidation" Version="1.0.10" />
+    <PackageReference Include="Nanoid" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Media\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Commerce.SharedKernel.Domain\Commerce.SharedKernel.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

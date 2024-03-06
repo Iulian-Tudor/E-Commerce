@@ -1,0 +1,84 @@
+﻿@page "/"
+@page "/categories"
+
+@inject IAuthService AuthService
+@inject ICategoryService CategoryService
+@inject NavigationManager NavigationManager
+
+<RefreshToken />
+
+<style>
+    .fixed-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .card-style {
+        max-width: 30rem;
+        min-height: 16.5rem;
+        max-height: 16.5rem;
+    }
+
+    .card-content-style {
+        min-height: 4.5rem;
+        max-height: 4.5rem;
+        white-space: wrap;
+        text-overflow: ellipsis
+    }
+</style>
+
+@if (identifiedUserResult.IsSuccess)
+{
+    <MudTooltip Text="Add category">
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Add"
+                   Color="Color.Secondary"
+                   Size="Size.Small"
+                   Href="/categories/add"
+                   Class="fixed-button">
+            Add Category
+        </MudButton>
+    </MudTooltip>
+}
+
+<MudText Typo="Typo.h3" Style="margin-top: 3rem; margin-bottom: 3rem;" Align="Align.Center">Categories</MudText>
+
+<div class="d-flex flex-wrap justify-center">
+    @if (!categories.Any())
+    {
+        <MudText Typo="Typo.h5" Align="Align.Center">No categories found</MudText>
+    }
+    else
+    {
+        @foreach (var category in categories)
+        {
+            <MudItem>
+                <MudCard Class="pa-4 ma-4 card-style">
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h4" Align="Align.Center">@category.Name</MudText>
+                            </CardHeaderContent>
+
+                            <CardHeaderActions>
+                                @if (identifiedUserResult.IsSuccess)
+                            {
+                                <MudTooltip Text="Add product">
+                                    <MudFab Icon="@Icons.Material.Filled.Add" Color="Color.Primary" Size="Size.Small" OnClick="@(() => NavigateToAddProduct(category.Id))" />
+                                </MudTooltip>
+                            }
+                        </CardHeaderActions>
+                    </MudCardHeader>
+
+                    <MudCardContent>
+                        <MudText Align="Align.Center" Class="overflow-hidden card-content-style">@category.Description</MudText>
+                        </MudCardContent>
+
+                        <MudCardActions Class="d-flex justify-center">
+                            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => NavigateToProductsOverview(category.Id))">See products</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+        }
+    }
+</div>

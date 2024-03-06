@@ -1,0 +1,33 @@
+﻿@page "/categories/{categoryId}/products/create"
+
+@inject IAuthService AuthService
+@inject IProductService ProductService
+@inject NavigationManager NavigationManager
+
+<RefreshToken/>
+<RestrictAccess />
+
+<MudText Typo="Typo.h3" Style="margin-top: 3rem; margin-bottom: 3rem;" Align="Align.Center">Add New Product</MudText>
+
+<MudContainer Class="pt-16">
+    <EditForm Model="Model" OnValidSubmit="Submit">
+        <DataAnnotationsValidator />
+
+        <MudGrid Class="d-flex justify-center">
+            <MudItem xs="12" sm="7">
+                <MudCard>
+                    <MudCardContent>
+                        <MudTextField Label="Name" HelperText="Max. 50 characters" @bind-Value="Model.Name" For="@(() => Model.Name)" />
+                        <MudTextField Label="Description" HelperText="Max. 400 characters" @bind-Value="Model.Description" For="@(() => Model.Description)" />
+                        <MudTextField Label="Price" HelperText="Greater than 0" @bind-Value="Model.Price" For="@(() => Model.Price)" />
+                    </MudCardContent>
+
+                    <MudCardActions>
+                        <MudButton ButtonType="ButtonType.Button" Variant="Variant.Text" Color="Color.Primary" Class="mr-auto" @onclick="Cancel">Cancel</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Add Product</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+</MudContainer>

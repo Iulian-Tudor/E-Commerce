@@ -1,0 +1,53 @@
+﻿@page "/sign-in"
+
+@inject IUserGateService UserGateService
+@inject NavigationManager NavigationManager
+@inject ILocalStorageService LocalStorageService
+
+<RefreshToken/>
+
+<MudText Typo="Typo.h3" Style="margin-top: 3rem; margin-bottom: 3rem;" Align="Align.Center">Sign in</MudText>
+
+<MudContainer Class="pt-16">
+    @if (!isCreated && !isPassed)
+    {
+        <EditForm Model="CreateModel" OnValidSubmit="SubmitCreate">
+            <DataAnnotationsValidator />
+    
+            <MudGrid Class="d-flex justify-center">
+                <MudItem xs="12" sm="7">
+                    <MudCard>
+                        <MudCardContent>
+                            <MudTextField Label="Email address" HelperText="Please enter your account's email address" @bind-Value="CreateModel.EmailAddress" For="@(() => CreateModel.EmailAddress)" />
+                        </MudCardContent>
+                
+                        <MudCardActions>
+                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Submit</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    }
+    
+    @if (isCreated && !isPassed)
+    {
+        <EditForm Model="CreateModel" OnValidSubmit="SubmitPass">
+            <DataAnnotationsValidator />
+
+            <MudGrid Class="d-flex justify-center">
+                <MudItem xs="12" sm="7">
+                    <MudCard>
+                        <MudCardContent>
+                            <MudTextField Label="Pass code" HelperText="Please enter the pass code received on your email" @bind-Value="PassModel.PassCode" For="@(() => PassModel.PassCode)" />
+                        </MudCardContent>
+
+                        <MudCardActions>
+                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Sign in</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    }
+</MudContainer>

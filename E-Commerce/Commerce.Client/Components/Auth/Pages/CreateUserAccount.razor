@@ -1,0 +1,30 @@
+﻿@page "/sign-up"
+
+@inject IUserService UserService
+@inject NavigationManager NavigationManager
+
+<RefreshToken/>
+
+<MudText Typo="Typo.h3" Style="margin-top: 3rem; margin-bottom: 3rem;" Align="Align.Center">Sign up</MudText>
+
+<MudContainer Class="pt-16">
+    <EditForm Model="Model" OnValidSubmit="Submit">
+        <DataAnnotationsValidator />
+    
+        <MudGrid Class="d-flex justify-center">
+            <MudItem xs="12" sm="7">
+                <MudCard>
+                    <MudCardContent>
+                        <MudTextField Label="First name" HelperText="Max. 50 characters" @bind-Value="Model.FirstName" For="@(() => Model.FirstName)" />
+                        <MudTextField Label="Last name" HelperText="Max. 50 characters" @bind-Value="Model.LastName" For="@(() => Model.LastName)" />
+                        <MudTextField Label="Email address" HelperText="Max. 50 characters" @bind-Value="Model.EmailAddress" For="@(() => Model.EmailAddress)" />
+                    </MudCardContent>
+                
+                    <MudCardActions>
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+</MudContainer>
