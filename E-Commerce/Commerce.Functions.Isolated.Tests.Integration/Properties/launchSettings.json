@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Commerce.Functions.Isolated": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7373"
+    }
+  }
+}
